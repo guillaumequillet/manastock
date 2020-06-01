@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+{% block title %}Liste des articles{% endblock %}
+{% block body %}
+  <h1>Liste des Articles</h1>
+  <table>
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td>Code</td>
+        <td>Description</td>
+        <td>Lot</td>
+        <td>N° Série</td>
+        <td>Poids</td>
+        <td>Largeur</td>
+        <td>hauteur</td>
+        <td>Longueur</td>
+        <td>Code à barres</td>
+        <td>Catégories</td>
+        <td>Propriétaire</td>
+      </tr>
+    </thead>
+    <tbody>
+      {% for article in articles %}
+        <tr>
+          <td>{{ article.id }}</td>
+          <td>{{ article.code }}</td>
+          <td>{{ article.description }}</td>
+          <td>{% if article.batch %}Oui{% else %}Non{% endif %}</td>
+          <td>{% if article.serial %}Oui{% else %}Non{% endif %}</td>
+          <td>{{ article.weight }}</td>
+          <td>{{ article.width }}</td>
+          <td>{{ article.height }}</td>
+          <td>{{ article.length }}</td>
+          <td>{{ article.barcode }}</td>
+          <td>
+            {% for category in article.categories %}
+              {{ category.name }}{% if not loop.last %} |{% endif %}
+            {% endfor %}
+          </td>
+          <td>{{ article.owner.name }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p>
+    Page: {{ page }}
+  </p>
+{% endblock %}

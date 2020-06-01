@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+{% block title %}Liste des Propriétaires{% endblock %}
+{% block body %}
+  <h1>Liste des Propriétaires</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nom</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for owner in owners %}
+        <tr>
+          <td>{{ owner.id }}</td>
+          <td>{{ owner.name }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p>
+    Page: {{ page }}
+  </p>
+{% endblock %}

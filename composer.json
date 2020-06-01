@@ -1,0 +1,19 @@
+{
+    "name": "guillaumequillet/manastock",
+    "description": "Logiciel de Gestion de stock suite prototype de la formation OC",
+    "authors": [
+        {
+            "name": "guillaumequillet",
+            "email": "guillaume.quillet@yahoo.fr"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\" : "src/"
+        }
+    },
+    "require": {
+        "symfony/var-dumper": "^5.1",
+        "twig/twig": "^3.0"
+    }
+}
