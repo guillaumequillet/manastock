@@ -16,6 +16,7 @@ class Article extends Entity
   private $height;
   private $length;
   private $barcode;
+  private $image;
 
   // entities variables
   private $categories;
@@ -70,6 +71,11 @@ class Article extends Entity
   public function getBarcode(): string
   {
     return $this->barcode;
+  }
+
+  public function getImage(): string
+  {
+    return $this->image;
   }
 
   public function getCategories(): array
@@ -140,6 +146,12 @@ class Article extends Entity
     public function setBarcode(string $barcode): self
     {
       $this->barcode = $barcode;
+      return $this;
+    }
+
+    public function setImage(string $image): self
+    {
+      $this->image = $image;
       return $this;
     }
   
