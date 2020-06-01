@@ -24,15 +24,22 @@ class OwnerController extends Controller
     $owner = $this->repository->find($id);
 
     if (is_null($owner)) {
+      $this->view->addLog(['message' => 'Le stockeur demandé n\'existe pas', 'class' => 'alert-danger']);
       header('Location: index.php?controller=owner&action=index');
       exit();
     }
 
     // if the form was correctly filled, we persist the new values in Database
     if (isset($_POST['name']) && !empty($_POST['name'])) {
+      $oldName = $owner->getName();
       $owner->setName(strip_tags($_POST['name']));
-      $this->repository->update($owner);
-      $this->view->addLog(['message' => 'Le stockeur a bien été modifié', 'class' => 'alert-success']);
+      $result = $this->repository->update($owner);
+      if ($result) {
+        $this->view->addLog(['message' => 'Le stockeur a bien été modifié', 'class' => 'alert-success']);
+      } else {
+        $owner->setName($oldName);
+        $this->view->addLog(['message' => 'Le stockeur n\'a pas pu être modifié', 'class' => 'alert-danger']);
+      }
     }
     
     $data = ['owner' => $owner];

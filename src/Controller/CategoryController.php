@@ -24,6 +24,7 @@ class CategoryController extends Controller
     $category = $this->repository->find($id);
 
     if (is_null($category)) {
+      $this->view->addLog(['message' => 'La catégorie demandée n\'existe pas', 'class' => 'alert-danger']);
       header('Location: index.php?controller=category&action=index');
       exit();
     }
