@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+{% block title %}Catégorie {{ category.name }}{% endblock %}
+{% block body %}
+  <h1>Catégorie {{ category.name }}</h1>
+  <form method="post">
+    <div class="form-group">
+      <label for="name">Nom</label>
+      <input type="text" class="form-control" id="name" name="name" value="{{ category.name }}" required> 
+    </div>
+    <div class="form-group">
+      <label for="description">Nom</label>
+      <input type="text" class="form-control" id="description" name="description" value="{{ category.description }}" required> 
+    </div>
+    <button type="submit" class="btn btn-primary">Enregister</button>
+  </form>
+{% endblock %}
