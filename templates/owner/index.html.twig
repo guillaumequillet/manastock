@@ -2,22 +2,25 @@
 {% block title %}Liste des Propriétaires{% endblock %}
 {% block body %}
   <h1>Liste des Propriétaires</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Nom</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for owner in owners %}
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <caption>Liste des Propriétaires</caption>
+      <thead class="thead-dark">
         <tr>
-          <td>{{ owner.id }}</td>
-          <td>{{ owner.name }}</td>
+          <th scope="col">#</th>
+          <th scope="col">Nom</th>
         </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {% for owner in owners %}
+          <tr>
+            <th scope="row">{{ owner.id }}</th>
+            <td>{{ owner.name }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
   <p>
     Page: {{ page }}
   </p>

@@ -2,50 +2,49 @@
 {% block title %}Liste des articles{% endblock %}
 {% block body %}
   <h1>Liste des Articles</h1>
-  <table>
-    <thead>
-      <tr>
-        <td>ID</td>
-        <td>Code</td>
-        <td>Description</td>
-        <td>Lot</td>
-        <td>N° Série</td>
-        <td>Poids</td>
-        <td>Largeur</td>
-        <td>hauteur</td>
-        <td>Longueur</td>
-        <td>Code à barres</td>
-        <td>Image</td>
-        <td>Catégories</td>
-        <td>Propriétaire</td>
-      </tr>
-    </thead>
-    <tbody>
-      {% for article in articles %}
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <caption>Liste des Articles</caption>
+      <thead class="thead-dark">
         <tr>
-          <td>{{ article.id }}</td>
-          <td>{{ article.code }}</td>
-          <td>{{ article.description }}</td>
-          <td>{% if article.batch %}Oui{% else %}Non{% endif %}</td>
-          <td>{% if article.serial %}Oui{% else %}Non{% endif %}</td>
-          <td>{{ article.weight }}</td>
-          <td>{{ article.width }}</td>
-          <td>{{ article.height }}</td>
-          <td>{{ article.length }}</td>
-          <td>{{ article.barcode }}</td>
-          <td>
-            {% if article.image is not empty %}{{ article.image }}{% else %}Pas d'image{% endif %}
-          </td>
-          <td>
-            {% for category in article.categories %}
-              {{ category.name }}{% if not loop.last %} |{% endif %}
-            {% endfor %}
-          </td>
-          <td>{{ article.owner.name }}</td>
+          <th scope="col">#</th>
+          <th scope="col">Code</th>
+          <th scope="col">Description</th>
+          <th scope="col">Lot</th>
+          <th scope="col">N° Série</th>
+          <th scope="col">Poids</th>
+          <th scope="col">L x W x H</th>
+          <th scope="col">Code à barres</th>
+          <th scope="col">Image</th>
+          <th scope="col">Catégories</th>
+          <th scope="col">Propriétaire</th>
         </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {% for article in articles %}
+          <tr>
+            <th scope="row">{{ article.id }}</th>
+            <td>{{ article.code }}</td>
+            <td>{{ article.description }}</td>
+            <td>{% if article.batch %}Oui{% else %}Non{% endif %}</td>
+            <td>{% if article.serial %}Oui{% else %}Non{% endif %}</td>
+            <td>{{ article.weight }}</td>
+            <td>{{ article.length }} x {{ article.width }} x {{ article.height }}</td>
+            <td>{{ article.barcode }}</td>
+            <td>
+              {% if article.image is not empty %}{{ article.image }}{% else %}Pas d'image{% endif %}
+            </td>
+            <td>
+              {% for category in article.categories %}
+                {{ category.name }}{% if not loop.last %} |{% endif %}
+              {% endfor %}
+            </td>
+            <td>{{ article.owner.name }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
   <p>
     Page: {{ page }}
   </p>

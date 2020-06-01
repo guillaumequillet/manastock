@@ -2,24 +2,27 @@
 {% block title %}Liste des Catégories{% endblock %}
 {% block body %}
   <h1>Liste des Catégories</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Nom</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for category in categories %}
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <caption>Liste des Catégories</caption>
+      <thead class="thead-dark">
         <tr>
-          <td>{{ category.id }}</td>
-          <td>{{ category.name }}</td>
-          <td>{{ category.description }}</td>      
+          <th scope="col">#</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Description</th>
         </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {% for category in categories %}
+          <tr>
+            <th scope="row">{{ category.id }}</th>
+            <td>{{ category.name }}</td>
+            <td>{{ category.description }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
   <p>
     Page: {{ page }}
   </p>
