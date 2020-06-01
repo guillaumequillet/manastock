@@ -54,4 +54,11 @@ class Repository
     $entity->hydrate($res);
     return $entity;    
   }
+
+  public function delete(int $id): bool
+  {
+    $req = $this->database->prepare('DELETE FROM ' . $this->tableName . ' WHERE id=:id');
+    $req->execute(['id' => $id]);
+    return $req->rowCount() > 0;
+  }
 }

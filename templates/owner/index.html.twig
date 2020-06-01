@@ -19,7 +19,7 @@
             <td>{{ owner.name }}</td>
             <td>
               <a href="index.php?controller=owner&amp;action=edit&amp;id={{ owner.id }}" class="btn btn-secondary">Modifier</a>
-              <a href="index.php?controller=owner&amp;action=delete&amp;id={{ owner.id }}" class="btn btn-danger">Supprimer</a>
+              <a href="index.php?controller=owner&amp;action=delete&amp;id={{ owner.id }}" class="btn btn-danger" onclick="return confirm('Etes-vous sûr(e) de vouloir supprimer cet utilisateur ?');">Supprimer</a> 
             </td>
           </tr>
         {% endfor %}

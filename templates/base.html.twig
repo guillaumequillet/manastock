@@ -42,6 +42,11 @@
   </nav>
 
   <div class="container">
+    <p>
+      {% for log in logs %}
+        <div class="alert {{ log.class }}" role="alert">{{ log.message }}</div>
+      {% endfor %}
+    </p>
     {% block body %}{% endblock %}
   </div>
   
