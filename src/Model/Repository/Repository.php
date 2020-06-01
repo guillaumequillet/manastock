@@ -9,6 +9,7 @@ class Repository
 {
   protected $entityName;
   protected $tableName;
+  protected $database;
 
   public function __construct()
   {
@@ -17,11 +18,12 @@ class Repository
     $entityName = explode('Repository', end($classname))[0];
     $this->entityName = "App\\Model\\Entity\\" . $entityName;
     $this->tableName = lcfirst($entityName);
+    $this->database = Database::getInstance();
   }
 
   public function findAll(): ?array
   {
-    $req = Database::getInstance()->prepare('SELECT * FROM ' . $this->tableName);
+    $req = $this->database->prepare('SELECT * FROM ' . $this->tableName);
     $req->execute([]);
     $res = $req->fetchAll();
 
@@ -40,7 +42,7 @@ class Repository
 
   public function find(int $id): ?Entity
   {
-    $req = Database::getInstance()->prepare('SELECT * FROM ' . $this->tableName . ' WHERE id=:id LIMIT 1');
+    $req = $this->database->prepare('SELECT * FROM ' . $this->tableName . ' WHERE id=:id LIMIT 1');
     $req->execute(['id' => $id]);
     $res = $req->fetch();
 

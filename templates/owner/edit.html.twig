@@ -2,7 +2,7 @@
 {% block title %}Stockeur {{ owner.name }}{% endblock %}
 {% block body %}
   <h1>Stockeur {{ owner.name }}</h1>
-  <form>
+  <form method="post">
     <div class="form-group">
       <label for="name">Nom</label>
       <input type="text" class="form-control" id="name" name="name" value="{{ owner.name }}"> 

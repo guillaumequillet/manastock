@@ -20,6 +20,10 @@ class OwnerController extends Controller
   public function edit(int $id): void
   {
     $owner = $this->repository->find($id);
+    if (isset($_POST['name']) && !empty($_POST['name'])) {
+      $owner->setName(strip_tags($_POST['name']));
+      $this->repository->persist($owner);
+    }
 
     if (is_null($owner)) {
       header('Location: index.php?controller=owner&action=index');
