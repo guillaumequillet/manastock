@@ -16,4 +16,17 @@ class OwnerController extends Controller
 
     $this->render('owner/index', $data);
   }
+
+  public function edit(int $id): void
+  {
+    $owner = $this->repository->find($id);
+
+    if (is_null($owner)) {
+      header('Location: index.php?controller=owner&action=index');
+      exit();
+    }
+
+    $data = ['owner' => $owner];
+    $this->render('owner/edit', $data);
+  }
 }

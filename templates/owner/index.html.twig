@@ -1,14 +1,15 @@
 {% extends "base.html.twig" %}
-{% block title %}Liste des Propriétaires{% endblock %}
+{% block title %}Liste des Stockeurs{% endblock %}
 {% block body %}
-  <h1>Liste des Propriétaires</h1>
+  <h1>Liste des Stockeurs</h1>
   <div class="table-responsive">
     <table class="table table-striped">
-      <caption>Liste des Propriétaires</caption>
+      <caption>Liste des Stockeurs</caption>
       <thead class="thead-dark">
         <tr>
           <th scope="col">#</th>
           <th scope="col">Nom</th>
+          <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -16,11 +17,18 @@
           <tr>
             <th scope="row">{{ owner.id }}</th>
             <td>{{ owner.name }}</td>
+            <td>
+              <a href="index.php?controller=owner&amp;action=edit&amp;id={{ owner.id }}" class="btn btn-secondary">Modifier</a>
+              <a href="index.php?controller=owner&amp;action=delete&amp;id={{ owner.id }}" class="btn btn-danger">Supprimer</a>
+            </td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
   </div>
+  <p>
+    <a href="index.php?controller=owner&amp;action=new" class="btn btn-primary">Créer un nouveau Stockeur</a>
+  </p>
   <p>
     Page: {{ page }}
   </p>

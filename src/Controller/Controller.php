@@ -16,7 +16,9 @@ class Controller
     $classname = explode('\\', get_class($this));
     $entityName = explode('Controller', end($classname))[0];
     $repositoryName = '\\App\\Model\\Repository\\' . $entityName . 'Repository';
-    $this->repository = new $repositoryName();
+    if (class_exists($repositoryName)) {
+      $this->repository = new $repositoryName();
+    }
     $this->view = new View();
   }
 
