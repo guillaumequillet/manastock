@@ -31,10 +31,16 @@ class CategoryController extends Controller
 
     // if the form was correctly filled, we persist the new values in Database
     if (isset($_POST['name']) && !empty($_POST['name'])) {
+      $oldName = $category->getName();
       $category->setName(strip_tags($_POST['name']));
       $category->setDescription(strip_tags($_POST['description']));
-      $this->repository->update($category);
-      $this->view->addLog(['message' => 'La catégorie a bien été modifiée', 'class' => 'alert-success']);
+      $result = $this->repository->update($category);
+      if ($result) {
+        $this->view->addLog(['message' => 'La catégorie a bien été modifiée', 'class' => 'alert-success']);
+      } else {
+        $category->setName($oldName);
+        $this->view->addLog(['message' => 'La catégorie n\'a pas pu être modifiée', 'class' => 'alert-danger']);
+      }
     }
     
     $data = ['category' => $category];
