@@ -10,14 +10,9 @@
           <th scope="col">#</th>
           <th scope="col">Code</th>
           <th scope="col">Description</th>
-          <th scope="col">Lot</th>
-          <th scope="col">N° Série</th>
-          <th scope="col">Poids</th>
-          <th scope="col">L x W x H</th>
-          <th scope="col">Code à barres</th>
-          <th scope="col">Image</th>
           <th scope="col">Catégories</th>
           <th scope="col">Propriétaire</th>
+          <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -26,25 +21,24 @@
             <th scope="row">{{ article.id }}</th>
             <td>{{ article.code }}</td>
             <td>{{ article.description }}</td>
-            <td>{% if article.batch %}Oui{% else %}Non{% endif %}</td>
-            <td>{% if article.serial %}Oui{% else %}Non{% endif %}</td>
-            <td>{{ article.weight }}</td>
-            <td>{{ article.length }} x {{ article.width }} x {{ article.height }}</td>
-            <td>{{ article.barcode }}</td>
-            <td>
-              {% if article.image is not empty %}{{ article.image }}{% else %}Pas d'image{% endif %}
-            </td>
             <td>
               {% for category in article.categories %}
                 {{ category.name }}{% if not loop.last %} |{% endif %}
               {% endfor %}
             </td>
             <td>{{ article.owner.name }}</td>
+            <td>
+              <a href="index.php?controller=article&amp;action=edit&amp;id={{ article.id }}" class="btn btn-secondary">Modifier</a>
+              <a href="index.php?controller=article&amp;action=delete&amp;id={{ article.id }}" class="btn btn-danger" onclick="return confirm('Etes-vous sûr(e) de vouloir supprimer cet article ?');">Supprimer</a> 
+            </td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
   </div>
+  <p>
+    <a href="index.php?controller=article&amp;action=create" class="btn btn-primary">Créer un nouvel Article</a>
+  </p>
   <p>
     Page: {{ page }}
   </p>
